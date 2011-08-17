@@ -190,12 +190,10 @@ module Murlsh
         fieldset(:id => 'add') {
           self.p { form_input :id => 'url', :label => 'Add URL', :size => 32 }
           self.p {
-            form_input :id => 'title', :label => 'Title', :size => 32,
-              :optional => true
+            form_input :id => 'title', :label => 'Title', :size => 32
           }
           self.p {
-            form_input :id => 'via', :label => 'Via', :size => 32,
-              :optional => true
+            form_input :id => 'via', :label => 'Via', :size => 32
           }
           self.p {
             form_input :type => 'password', :id => 'auth', :label => 'Password',
