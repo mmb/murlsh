@@ -188,16 +188,15 @@ module Murlsh
     def add_form
       form(:action => 'url', :method => 'post') {
         fieldset(:id => 'add') {
-          self.p { form_input :id => 'url', :label => 'Add URL', :size => 32 }
           self.p {
-            form_input :id => 'title', :label => 'Title', :size => 32
+            form_input :id => 'url', :label => 'Add URL', :size => 32,
+              :required => ''
           }
-          self.p {
-            form_input :id => 'via', :label => 'Via', :size => 32
-          }
+          self.p { form_input :id => 'title', :label => 'Title', :size => 32 }
+          self.p { form_input :id => 'via', :label => 'Via', :size => 32 }
           self.p {
             form_input :type => 'password', :id => 'auth', :label => 'Password',
-              :size => 16
+              :size => 16, :required => ''
             form_input :id => 'submit', :type => 'button', :value => 'Add'
           }
         }

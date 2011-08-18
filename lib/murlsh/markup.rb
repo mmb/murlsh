@@ -69,7 +69,7 @@ module Murlsh
     def form_input(options)
       if options[:id]
         if options[:label]
-          label_class = options[:optional] ? 'optional' : 'required'
+          label_class = options[:required] ? 'required' : 'optional'
           label options[:label], :for => options[:id], :class => label_class
         end
         options[:name] ||= options[:id]
