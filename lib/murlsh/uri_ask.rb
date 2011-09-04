@@ -93,7 +93,7 @@ module Murlsh
     def default_headers
       result = {
         'User-Agent' =>
-          'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.4) Gecko/20030624',
+          'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.126 Safari/535.1',
         }
       if host.to_s[/^www\.nytimes\.com/]
         result['Referer'] = 'http://news.google.com/'
