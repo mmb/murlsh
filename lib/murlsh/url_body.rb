@@ -5,7 +5,7 @@ module Murlsh
 
   # Url list page builder.
   class UrlBody < Builder::XmlMarkup
-    include Murlsh::Markup
+    include ::Murlsh::Markup
 
     def initialize(config, req, result_set, content_type='text/html')
       @config, @req, @result_set, @content_type = config, req, result_set,
@@ -20,7 +20,7 @@ module Murlsh
       if page.to_i >= 1
         query = @req.params.dup
         query['p'] = page
-        Murlsh.build_query(query)
+        ::Murlsh.build_query(query)
       end
     end
 
@@ -50,13 +50,13 @@ module Murlsh
               last = nil
 
               @result_set.results.each do |mu|
-                Murlsh::Plugin.hooks('url_display_pre') do |p|
+                ::Murlsh::Plugin.hooks('url_display_pre') do |p|
                   p.run mu, @req, @config
                 end
 
                 li(:id => "liu#{mu.id}") {
                   unless mu.same_author?(last)
-                    avatar_url = Murlsh::Plugin.hooks('avatar').inject(
+                    avatar_url = ::Murlsh::Plugin.hooks('avatar').inject(
                       nil) do |url_so_far,plugin|
                       plugin.run url_so_far, mu, @config
                     end
@@ -74,7 +74,7 @@ module Murlsh
 
                   a mu.title_stripped, :href => mu.url, :class => 'm'
 
-                  Murlsh::Plugin.hooks('url_display_add') do |p|
+                  ::Murlsh::Plugin.hooks('url_display_add') do |p|
                     p.run self, mu, @config
                   end
 
@@ -154,7 +154,7 @@ module Murlsh
           order += (@config['quick_search'].keys - order).sort
           order.each do |k|
             if v = @config['quick_search'][k]
-              a "/#{k}", :href => "?q=#{URI.escape(v)}" ; text! ' '
+              a "/#{k}", :href => "?q=#{::URI.escape(v)}" ; text! ' '
             end
           end
         }
