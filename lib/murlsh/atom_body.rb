@@ -29,15 +29,14 @@ module Murlsh
             :summary => mu.title_stripped
           }
 
-          if EnclosureContentTypes.include?(mu.content_type)
-            options.merge!(
-              :enclosure_type => mu.content_type,
-              :enclosure_href => mu.url,
-              :enclosure_title => mu.title
-              )
-            if mu.content_length
-              options.merge! :enclosure_length => mu.content_length
-            end
+          options[:enclosures] = []
+          mu.enclosures.each do |e|
+            options[:enclosures] << {
+              :enclosure_href => e.enclosure_url,
+              :enclosure_length => e.content_length,
+              :enclosure_title => e.title,
+              :enclosure_type => e.content_type
+            }
           end
 
           if mu.thumbnail_url

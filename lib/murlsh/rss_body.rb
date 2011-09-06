@@ -29,11 +29,12 @@ module Murlsh
             i.link = mu.url
             i.date = mu.time
 
-            if EnclosureContentTypes.include? mu.content_type
-              i.enclosure.url = mu.url
-              i.enclosure.type = mu.content_type
-              i.enclosure.length = mu.content_length
+            mu.enclosures.first(1).each do |e|
+              i.enclosure.url = e.enclosure_url
+              i.enclosure.type = e.content_type
+              i.enclosure.length = e.content_length
             end
+
           end
         end
 

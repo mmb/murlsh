@@ -6,6 +6,7 @@ module Murlsh
 
   # URL ActiveRecord.
   class Url < ActiveRecord::Base
+    has_many :enclosures
     validates_format_of :url, :with => URI.regexp
 
     # Get the title of this url.
