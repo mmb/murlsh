@@ -8,7 +8,7 @@ module Murlsh
 
     # Title with whitespace compressed and leading and trailing whitespace
     # stripped.
-    def title_stripped; title.strip.gsub(/\s+/, ' '); end
+    def title_stripped; title.to_s.strip.gsub(/\s+/, ' '); end
   end
 
 end
