@@ -7,7 +7,7 @@ module Murlsh
 
     @hook = 'add_pre'
 
-    VimeoRe = %r{^http:\/\/(?:www\.)?vimeo\.com\/(\d+)$}i
+    VimeoRe = %r{^http://(?:www\.)?vimeo\.com/(\d+)$}i
 
     def self.run(url, config)
       if match = VimeoRe.match(url.url)
