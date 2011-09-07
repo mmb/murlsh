@@ -33,6 +33,12 @@ module Murlsh
               h['thumbnail_url']).to_s
           end
 
+          h['enclosures'] = mu.enclosures.map do |e|
+            new_e = e.attributes.reject { |k,v| k == 'url_id' }
+            new_e['title'] = e.title_stripped
+            new_e
+          end
+
           h
         end
         @body = urls.to_json
