@@ -31,12 +31,15 @@ module Murlsh
 
           options[:enclosures] = []
           mu.enclosures.each do |e|
-            options[:enclosures] << {
+            new_e = {
               :enclosure_href => e.enclosure_url,
-              :enclosure_length => e.content_length,
               :enclosure_title => e.title_stripped,
               :enclosure_type => e.content_type
             }
+
+            new_e[:enclosure_length] = e.content_length  if e.content_length
+
+            options[:enclosures] << new_e
           end
 
           if mu.thumbnail_url
