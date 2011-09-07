@@ -34,7 +34,7 @@ module Murlsh
             options[:enclosures] << {
               :enclosure_href => e.enclosure_url,
               :enclosure_length => e.content_length,
-              :enclosure_title => e.title,
+              :enclosure_title => e.title_stripped,
               :enclosure_type => e.content_type
             }
           end
