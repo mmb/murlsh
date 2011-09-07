@@ -1,3 +1,5 @@
+require 'murlsh'
+
 class CreateEnclosures < ActiveRecord::Migration
 
   def self.up
@@ -11,6 +13,16 @@ class CreateEnclosures < ActiveRecord::Migration
     end
 
     add_index :enclosures, :url_id
+
+    # populate
+    require './plugins/add_pre_55_enclosure_self.rb'
+    require './plugins/add_pre_55_enclosure_vimeo.rb'
+    require './plugins/add_pre_55_enclosure_youtube.rb'
+
+    Murlsh::Url.find(:all).each do |u|
+      Murlsh::Plugin.hooks('add_pre') { |p| p.run u, {} }
+      u.save!
+    end
   end
 
   def self.down
