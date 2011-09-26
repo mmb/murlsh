@@ -1,3 +1,20 @@
+1.9.0
+	2011-09-25
+
+	Do not strip trailing slashes from urls during normalization.
+
+	Add enclosures to JSON.
+
+	Support multiple enclosures per url that can be set by plugins.
+
+	Plugins for adding enclosures for YouTube and Vimeo urls.
+
+	Support builder version 3.
+
+	Update user agent sent when asking about urls to more recent browser.
+
+	Use "required" instead of "optional" attribute for form inputs.
+
 1.8.0
 	2011-06-22
 
