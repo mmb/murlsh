@@ -32,7 +32,6 @@ Gem::Specification.new do |s|
     rack-rewrite
     rmagick
     rmail
-    sqlite3
     tinyatom
     treetop
     twitter
