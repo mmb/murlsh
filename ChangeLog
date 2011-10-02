@@ -1,7 +1,14 @@
+1.9.3
+	2011-10-02
+
+	Fix syntax error.
+
+	Fix 1.9.2 date in ChangeLog.
+
 1.9.2
 	2011-10-02
 
-	Update for Heroku Cedar stack. User DATABASE_URL environment variable.
+	Update for Heroku Cedar stack. Use DATABASE_URL environment variable.
 
 1.9.1
 	2011-10-02
