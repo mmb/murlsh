@@ -1,3 +1,12 @@
+1.9.1
+	2011-10-02
+
+	Detect if using Heroku and add postgresql gem to gemfile.
+
+	Automatically set root_url if using Heroku.
+
+	Remove sqlite3 as a dependency.
+
 1.9.0
 	2011-09-25
 
