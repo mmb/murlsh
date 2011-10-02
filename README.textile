@@ -51,7 +51,7 @@ mkdir murlsh_deploy <or any other name>
 cd murlsh_deploy
 murlsh .
 git init
-heroku create <choose a name>
+heroku create --stack cedar <choose a name>
 
 rake app:gemfile
 bundle install
@@ -68,7 +68,8 @@ git add .
 git commit
 git push heroku master
 
-heroku rake db:migrate
+heroku addons:add shared-database
+heroku run rake db:migrate
 </code>
 </pre>
 
