@@ -57,8 +57,6 @@ rake app:gemfile
 bundle install
 
 rake heroku:config
-heroku info
-rake config[root_url,<your app's Heroku url>]
 rake config[s3_bucket,<your S3 bucket name>]
 rake config[s3_id,<your S3 id>]
 rake config[s3_secret,<your S3 secret>]
