@@ -32,7 +32,7 @@ if ENV['DATABASE_URL']
     :username => db_parsed.user,
     :password => db_parsed.password,
     :database => db_parsed.path[1..-1],
-  )
+  }
 end
 
 heroku_info = {}
