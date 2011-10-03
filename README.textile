@@ -1,9 +1,10 @@
 Host your bookmarks or maintain a link blog.
 
-* post from a command-line, a bookmarklet, or directly from your murlsh
+* post from command-line, bookmarklet, or web interface
 * fetches url titles and generates thumbnails from page
 * jGrowls embedded versions of Imageshack, Imgur, Vimeo and YouTube urls
 * converts Twitter status urls to their full text and adds user thumbnail
+* normalizes and strips junk from urls using postrank-uri
 * generates Atom and RSS feeds
 * generates podcast RSS feed and m3u file for all audio urls
 * generates json and jsonp feeds for client-side inclusion in other sites
