@@ -1,7 +1,5 @@
 require 'uri'
 
-require 'murlsh'
-
 module Murlsh
 
   # Show the domain of the url.
@@ -21,9 +19,7 @@ module Murlsh
 
     # Show the domain of the url.
     def self.run(markup, url, config)
-      domain = Murlsh::failproof do
-        URI(url.url).extend(Murlsh::URIDomain).domain
-      end
+      domain = Murlsh.failproof { URI(url.url).extend(URIDomain).domain }
       if domain
         # show domain if not already contained in title and not on skip list
         unless (url.title and url.title.downcase.index(domain)) or

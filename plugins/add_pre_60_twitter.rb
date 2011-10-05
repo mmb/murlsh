@@ -1,7 +1,5 @@
 require 'twitter'
 
-require 'murlsh'
-
 module Murlsh
 
   # Set title of twitter status urls to entire tweet.

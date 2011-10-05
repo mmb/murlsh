@@ -1,7 +1,5 @@
 require 'uri'
 
-require 'murlsh'
-
 module Murlsh
 
   # Notify PubSubHubbub hubs that feed has been updated.

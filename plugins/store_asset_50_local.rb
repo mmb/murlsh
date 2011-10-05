@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # Store assets on the local filesystem in the public directory.
@@ -12,7 +10,7 @@ module Murlsh
       name_parts = name.split('/')
       local_path = File.join('public', name_parts)
 
-      Murlsh::openlock(local_path, 'w') { |fout| fout.write data }
+      Murlsh.openlock(local_path, 'w') { |fout| fout.write data }
 
       name
     end

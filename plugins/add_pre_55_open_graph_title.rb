@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # If there is no page title, check for meta og:title.

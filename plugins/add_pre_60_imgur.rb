@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # Set the title of imgur images.

@@ -1,7 +1,3 @@
-require 'uri'
-
-require 'murlsh'
-
 module Murlsh
 
   # Try to fetch the content length, content type and title of a url.

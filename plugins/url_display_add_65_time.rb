@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # Show the time the url was posted.
@@ -10,7 +8,7 @@ module Murlsh
     # Show the time the url was posted.
     def self.run(markup, url, config)
       if url.time
-        display_time = url.time.extend(Murlsh::TimeAgo).ago
+        display_time = url.time.extend(TimeAgo).ago
         markup.span ", #{display_time}", :class => 'date'
       end
     end

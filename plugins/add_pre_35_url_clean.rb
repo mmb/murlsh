@@ -2,8 +2,6 @@ require 'uri'
 
 require 'postrank-uri'
 
-require 'murlsh'
-
 # Patch PostRank::URI.normalize to not strip trailing slashes from the path.
 module PostRank
 
@@ -33,8 +31,8 @@ module Murlsh
     @hook = 'add_pre'
 
     def self.run(url, config)
-      Murlsh::failproof { url.url = clean(url.url)  if cleanable?(url.url) }
-      Murlsh::failproof { url.via = clean(url.via)  if cleanable?(url.via) }
+      Murlsh.failproof { url.url = clean(url.url)  if cleanable?(url.url) }
+      Murlsh.failproof { url.via = clean(url.via)  if cleanable?(url.via) }
     end
 
     # Canonicalize and clean a url using PostRank::URI.clean.

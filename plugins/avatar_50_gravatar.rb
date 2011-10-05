@@ -1,7 +1,5 @@
 require 'uri'
 
-require 'murlsh'
-
 module Murlsh
 
   # Get Gravatar url from a url.
@@ -14,7 +12,7 @@ module Murlsh
         (gravatar_size = config.fetch('gravatar_size', 0)) > 0
         query = { :s => gravatar_size }
         URI.join('http://www.gravatar.com/avatar/', url.email,
-          Murlsh::build_query(query))
+          Murlsh.build_query(query))
       end
     end
 

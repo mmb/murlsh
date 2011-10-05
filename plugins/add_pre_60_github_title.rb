@@ -1,7 +1,5 @@
 require 'uri'
 
-require 'murlsh'
-
 module Murlsh
 
   # Github project page titles are not very descriptive so add meta description

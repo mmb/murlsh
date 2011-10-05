@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # Create enclosures for content types that can directly become enclosures.

@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # Add HTML5 audio tag to audio urls.

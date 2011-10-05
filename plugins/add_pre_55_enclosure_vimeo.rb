@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # Create video enclosures for Vimeo urls.

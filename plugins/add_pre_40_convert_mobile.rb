@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # Convert urls specifically for use on mobile devices into their non-mobile
