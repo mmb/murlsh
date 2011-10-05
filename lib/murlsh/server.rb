@@ -10,6 +10,6 @@ module Murlsh
     attr_reader :config
   end
 
-  def build_response(*args &block); ::Rack::Response.new *args &block; end
+  def build_response(*args, &block); ::Rack::Response.new *args &block; end
 
 end
