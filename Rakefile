@@ -83,7 +83,7 @@ namespace :db do
       if args.force == 'force'
         url_to_delete.destroy
       else
-        response = Murlsh.ask('Delete this url?', 'n')
+        response = Murlsh::Setup.ask('Delete this url?', 'n')
         url_to_delete.destroy  if %w{y yes}.include?(response.downcase)
       end
     }
@@ -198,9 +198,9 @@ namespace :user do
   desc 'Add a new user.'
   task :add do
     puts "adding to #{config.fetch('auth_file')}"
-    username = Murlsh.ask('Username:')
-    email = Murlsh.ask('Email:')
-    password = Murlsh.ask('Password:')
+    username = Murlsh::Setup.ask('Username:')
+    email = Murlsh::Setup.ask('Email:')
+    password = Murlsh::Setup.ask('Password:')
 
     Murlsh::Auth.new(config.fetch('auth_file')).add_user(username, email,
       password)
@@ -210,7 +210,7 @@ end
 
 desc 'Generate code for a bookmarklet that will post a new url.'
 task :post_bookmarklet do
-  password = Murlsh.ask('Password:')
+  password = Murlsh::Setup.ask('Password:')
   password = CGI.escape(CGI.escape(password))
   puts <<EOS
 javascript:var%20d=document,dgs=d.getSelection,enc=encodeURIComponent,w=window,wgs=w.getSelection,s=''+(wgs?wgs():dgs?dgs():d.selection.createRange().text);void(window.open('#{config.fetch('root_url')}bookmarklet?title='+enc(s)+'&url='+enc(location.href)+'&auth=#{password}'));
@@ -240,7 +240,7 @@ namespace :css do
 
   desc 'Combine and compress css.'
   task :compress => ['public/css'] do
-    combined = Murlsh.cat_files(
+    combined = Murlsh::Setup.cat_files(
       config['css_files'].map { |x| "public/#{x}" }, "\n")
 
     md5sum = Digest::MD5.hexdigest(combined)
@@ -256,7 +256,7 @@ namespace :css do
 
     unless config['css_compressed'] == compressed_url
       config['css_compressed'] = compressed_url
-      Murlsh.write_ordered_hash config, 'config.yaml'
+      Murlsh::Setup.write_ordered_hash config, 'config.yaml'
       puts "updated config with css_compressed = #{compressed_url}"
     end
   end
@@ -271,7 +271,7 @@ namespace :js do
 
   desc 'Combine and compress javascript.'
   task :compress => ['public/js'] do
-    combined = Murlsh.cat_files(
+    combined = Murlsh::Setup.cat_files(
       config['js_files'].map { |x| "public/#{x}" } )
 
     compressed = Net::HTTP.post_form(
@@ -295,7 +295,7 @@ namespace :js do
 
     unless config['js_compressed'] == compressed_url
       config['js_compressed'] = compressed_url
-      Murlsh.write_ordered_hash config, 'config.yaml'
+      Murlsh::Setup.write_ordered_hash config, 'config.yaml'
       puts "updated config with js_compressed = #{compressed_url}"
     end
   end
@@ -304,7 +304,7 @@ namespace :js do
   task :jslint do
     local_jslint = 'jslint_rhino.js'
     open(local_jslint, 'w') do |f|
-      f.write(Murlsh.cat_files(%w{
+      f.write(Murlsh::Setup.cat_files(%w{
         https://github.com/AndyStricker/JSLint/raw/rhinocmdline/fulljslint.js
         https://github.com/AndyStricker/JSLint/raw/rhinocmdline/rhino.js
       }))
@@ -389,7 +389,7 @@ fi
 SITE_URL='#{config.fetch('root_url')}'
 
 EOS
-    Murlsh.delicious_parse(args.source) do |b|
+    Murlsh::Setup.delicious_parse(args.source) do |b|
       # escape single quotes because these will be in single quotes in output
       href_escaped = b[:href].to_s.gsub("'", "'\"'\"'")
       via_url_escaped = b[:via_url].to_s.gsub("'", "'\"'\"'")
@@ -406,7 +406,7 @@ task :config, :key, :value do |t, args|
   orig_value = config[args.key]
   if args.value != orig_value
     config[args.key] = args.value
-    Murlsh.write_ordered_hash config, 'config.yaml'
+    Murlsh::Setup.write_ordered_hash config, 'config.yaml'
     puts "updated '#{args.key}' '#{orig_value}' => '#{args.value}'"
   else
     puts "'#{args.key}' is already set to '#{args.value}'"
@@ -454,7 +454,7 @@ namespace :heroku do
       puts "Set root_url to #{config['root_url']}"
     end
 
-    Murlsh.write_ordered_hash config, 'config.yaml'
+    Murlsh::Setup.write_ordered_hash config, 'config.yaml'
   end
 
 end

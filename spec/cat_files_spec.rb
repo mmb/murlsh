@@ -24,7 +24,7 @@ describe Murlsh do
       end
 
       it 'should cat the files together and return the result' do
-        Murlsh.cat_files([@f1.path, @f2.path]).should == <<eos
+        Murlsh::Setup.cat_files([@f1.path, @f2.path]).should == <<eos
 1
 2
 1
@@ -38,8 +38,8 @@ eos
     context 'when one or more files are missing' do
 
       it 'should raise no such file or directory' do
-        lambda { Murlsh.cat_files(['does_not_exist']) }.should raise_error(
-          Errno::ENOENT)
+        lambda { Murlsh::Setup.cat_files(
+          ['does_not_exist']) }.should raise_error(Errno::ENOENT)
       end
 
     end

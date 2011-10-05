@@ -1,6 +1,6 @@
 require 'murlsh'
 
-describe Murlsh::YamlOrderedHash do
+describe Murlsh::Setup::YamlOrderedHash do
 
   subject do
     h = {
@@ -10,7 +10,7 @@ describe Murlsh::YamlOrderedHash do
       'b' => 2,
       }
 
-    h.extend(Murlsh::YamlOrderedHash)
+    h.extend(Murlsh::Setup::YamlOrderedHash)
   end
   
   its(:to_yaml) { should == <<EOS

@@ -1,0 +1,7 @@
+require 'murlsh/setup/ask'
+require 'murlsh/setup/cat_files'
+require 'murlsh/setup/cp_r_safe'
+require 'murlsh/setup/delicious_parse'
+require 'murlsh/setup/install'
+require 'murlsh/setup/write_ordered_hash'
+require 'murlsh/setup/yaml_ordered_hash'

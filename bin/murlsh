@@ -15,4 +15,4 @@ if ARGV.empty?; usage; exit 1; end
 
 dest_dir = ARGV[0]
 
-Murlsh.install(dest_dir)
+Murlsh::Setup.install(dest_dir)
