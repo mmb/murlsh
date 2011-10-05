@@ -1,5 +1,3 @@
-require 'rack'
-
 module Murlsh
 
   # Serve most recent urls in json.
@@ -14,7 +12,7 @@ module Murlsh
 
       body = Murlsh::JsonBody.new(config, req, result_set)
 
-      Rack::Response.new body, 200, 'Content-Type' => 'application/json'
+      build_response body, 200, 'Content-Type' => 'application/json'
     end
 
   end

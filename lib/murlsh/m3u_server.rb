@@ -1,7 +1,5 @@
 require 'uri'
 
-require 'rack'
-
 require 'murlsh'
 
 module Murlsh
@@ -26,7 +24,7 @@ module Murlsh
       feed_url = URI.join(config.fetch('root_url'), 'm3u.m3u')
       body = Murlsh::M3uBody.new(config, req, feed_url, result_set.results)
 
-      resp = Rack::Response.new(body, 200, 'Content-Type' => 'audio/x-mpegurl')
+      resp = build_response(body, 200, 'Content-Type' => 'audio/x-mpegurl')
       if u = body.updated
         resp['Last-Modified'] = u.httpdate
       end

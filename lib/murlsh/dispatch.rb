@@ -60,16 +60,16 @@ module Murlsh
 
     # Rack call.
     def call(env)
-      req = Rack::Request.new(env)
+      req = ::Rack::Request.new(env)
       dispatch(req).call(req).finish
     end
 
     # Called if the request is not found.
     def not_found(req)
       if req.head?
-        Rack::Response.new([], 404)
+        ::Rack::Response.new([], 404)
       else
-        Rack::Response.new("<p>#{req.url} not found</p>
+        ::Rack::Response.new("<p>#{req.url} not found</p>
 
 <p><a href=\"#{config.fetch('root_url')}\">root<a></p>
 ",

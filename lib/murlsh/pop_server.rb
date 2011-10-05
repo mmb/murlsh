@@ -2,7 +2,6 @@ require 'net/pop'
 
 require 'active_record'
 require 'postrank-uri'
-require 'rack'
 require 'rmail'
 
 module Murlsh
@@ -29,7 +28,7 @@ module Murlsh
         end
       end
 
-      Rack::Response.new response_body.to_json, 200,
+      build_response response_body.to_json, 200,
         'Content-Type' => 'application/json'
     end
 

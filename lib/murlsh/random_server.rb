@@ -1,5 +1,3 @@
-require 'rack'
-
 require 'murlsh'
 
 module Murlsh
@@ -20,7 +18,7 @@ module Murlsh
         config.fetch('root_url')
       end
 
-      resp = Rack::Response.new("<a href=\"#{url}\">#{url}</a>")
+      resp = build_response("<a href=\"#{url}\">#{url}</a>")
       resp.redirect(url)
 
       resp

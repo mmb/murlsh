@@ -38,17 +38,17 @@ if !config['cache_metastore'].to_s.empty? and
 end
 
 use Rack::ConditionalGet
-use Murlsh::EtagAddEncoding
+use Murlsh::Rack::EtagAddEncoding
 use Rack::Deflater
 use Rack::Head
 use Rack::ETag
-use Murlsh::FarFutureExpires, :patterns => [
+use Murlsh::Rack::FarFutureExpires, :patterns => [
   %r{[\da-z]{32}\.(?:gif|jpe?g|png)$}i,
   %r{\.gen\.(css|js)$}
 ]
 
 feed_url = URI.join(config.fetch('root_url'), config.fetch('feed_file'))
-use Murlsh::MustRevalidate, :patterns => [
+use Murlsh::Rack::MustRevalidate, :patterns => [
   %r{^#{Regexp.escape(feed_url.path)}$},
   %r{^/(url)?$},
   %r{^/json\.json$},

@@ -1,5 +1,4 @@
 require 'active_record'
-require 'rack'
 
 module Murlsh
 
@@ -18,7 +17,7 @@ module Murlsh
 
       body = Murlsh::UrlBody.new(config, req, result_set, content_type)
 
-      resp = Rack::Response.new
+      resp = build_response
       resp.write(body.build)
       resp['Content-Type'] = content_type
 
@@ -70,8 +69,8 @@ module Murlsh
         response_body, response_code = '', 403
       end
 
-      Rack::Response.new(response_body.to_json, response_code, {
-        'Content-Type' => 'application/json' })
+      build_response response_body.to_json, response_code,
+        'Content-Type' => 'application/json'
     end
 
     # Delete a url.
@@ -91,7 +90,7 @@ module Murlsh
         response_code = 404
       end
 
-      Rack::Response.new response_body, response_code,
+      build_response response_body, response_code,
         'Content-Type' => 'application/json'
     end
 
