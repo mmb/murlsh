@@ -1,7 +1,7 @@
 require 'murlsh'
 
 class MarkupMixer < Builder::XmlMarkup
-  include Murlsh::Markup
+  include ::Murlsh::Markup
 end
 
 describe MarkupMixer do
