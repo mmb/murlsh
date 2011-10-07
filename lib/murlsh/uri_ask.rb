@@ -73,7 +73,7 @@ module Murlsh
 
       @doc = nil
       if html?(options)
-        Murlsh::failproof(options) do
+        Murlsh.failproof(options) do
           self.open(options[:headers]) do |f|
             data = f.read
             @doc = Nokogiri(data, to_s)
@@ -81,7 +81,7 @@ module Murlsh
             unless @doc.encoding
               @doc = Nokogiri(data, to_s, f.charset || 'utf-8')
             end
-            @doc.extend(Murlsh::Doc)
+            @doc.extend Doc
           end
         end
       end
@@ -137,11 +137,11 @@ module Murlsh
       request_headers = default_headers.merge(options.fetch(:headers, {}))
 
       response_headers = {}
-      Murlsh::failproof(options) do
+      Murlsh.failproof(options) do
         http = Net::HTTP.new(host, port)
         http.use_ssl = (scheme == 'https')
 
-        extend(Murlsh::URIGetPathQuery)
+        extend URIGetPathQuery
         resp = http.request_head(get_path_query, request_headers)
 
         if Net::HTTPSuccess === resp
@@ -166,7 +166,7 @@ module Murlsh
 
       response_headers = {}
       # use open-uri instead of Net::HTTP because it handles redirects
-      Murlsh::failproof(options) do
+      Murlsh.failproof(options) do
         response_headers = self.open(request_headers) { |f| f.meta }
       end
 

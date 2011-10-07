@@ -1,12 +1,10 @@
 require 'rss/maker'
 
-require 'murlsh'
-
 module Murlsh
 
   # Rss feed builder.
   class RssBody
-    include Murlsh::FeedBody
+    include FeedBody
 
     # Rss feed builder.
     def build
@@ -20,9 +18,7 @@ module Murlsh
           f.items.do_sort = true
 
           urls.each do |mu|
-            Murlsh::Plugin.hooks('url_display_pre') do |p|
-              p.run mu, req, config
-            end
+            Plugin.hooks('url_display_pre') { |p| p.run mu, req, config }
 
             i = f.items.new_item
             i.title = mu.title_stripped

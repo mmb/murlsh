@@ -2,13 +2,11 @@ require 'uri'
 
 require 'tinyatom'
 
-require 'murlsh'
-
 module Murlsh
 
   # Atom feed builder.
   class AtomBody
-    include Murlsh::FeedBody
+    include FeedBody
 
     # Atom feed builder.
     def build
@@ -20,7 +18,7 @@ module Murlsh
           map { |x| x['subscribe_url'] })
 
         urls.each do |mu|
-          Murlsh::Plugin.hooks('url_display_pre') do |p|
+          Plugin.hooks('url_display_pre') do |p|
             p.run mu, req, config
           end
 
@@ -56,12 +54,12 @@ module Murlsh
             end
           end
 
-          Murlsh::failproof do
+          Murlsh.failproof do
             if mu.via
               options.merge!(
                 :via_type => 'text/html',
                 :via_href => mu.via,
-                :via_title => URI(mu.via).extend(Murlsh::URIDomain).domain
+                :via_title => URI(mu.via).extend(URIDomain).domain
                 )
             end
           end

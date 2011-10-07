@@ -18,9 +18,7 @@ module Murlsh
         @body
       else
         urls = @result_set.results.map do |mu|
-          Murlsh::Plugin.hooks('url_display_pre') do |p|
-            p.run mu, @req, @config
-          end
+          Plugin.hooks('url_display_pre') { |p| p.run mu, @req, @config }
 
           h = mu.attributes
 

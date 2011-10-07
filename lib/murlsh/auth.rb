@@ -38,7 +38,7 @@ module Murlsh
 
     # Add a user to the authentication file.
     def add_user(username, email, password)
-      Murlsh::openlock(@file, 'a') do |f|
+      Murlsh.openlock(@file, 'a') do |f|
         f.write "#{[username, Digest::MD5.hexdigest(email),
           BCrypt::Password.create(password)].join(',')}\n"
       end

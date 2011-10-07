@@ -3,8 +3,6 @@ require 'open-uri'
 
 require 'RMagick'
 
-require 'murlsh'
-
 module Murlsh
 
   # Store images from various sources in asset storage.
@@ -52,13 +50,13 @@ module Murlsh
     #
     # Returns image url.
     def store_img(img)
-      img.extend(Murlsh::ImageList)  unless img.is_a?(Murlsh::ImageList)
+      img.extend(ImageList)  unless img.is_a?(ImageList)
       img_data = img.to_blob
       md5 = Digest::MD5.hexdigest(img_data)
 
       name = "img/thumb/#{md5}#{img.preferred_extension}"
 
-      Murlsh::Plugin.hooks('store_asset') do |p|
+      Plugin.hooks('store_asset') do |p|
         # run until one returns something
         if url = p.run(name, img_data, config)
           return url

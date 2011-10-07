@@ -1,7 +1,5 @@
 require 'uri'
 
-require 'murlsh'
-
 module Murlsh
 
   # Serve RSS feed.
@@ -12,10 +10,10 @@ module Murlsh
       page = 1
       per_page = config.fetch('num_posts_feed', 25)
 
-      result_set = Murlsh::UrlResultSet.new(req['q'], page, per_page)
+      result_set = UrlResultSet.new(req['q'], page, per_page)
 
       feed_url = URI.join(config.fetch('root_url'), 'rss.rss')
-      body = Murlsh::RssBody.new(config, req, feed_url, result_set.results)
+      body = RssBody.new(config, req, feed_url, result_set.results)
 
       resp = build_response(body, 200, 'Content-Type' => 'application/rss+xml')
       if u = body.updated

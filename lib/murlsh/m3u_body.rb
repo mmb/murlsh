@@ -2,7 +2,7 @@ module Murlsh
 
   # m3u builder.
   class M3uBody
-    include Murlsh::FeedBody
+    include FeedBody
 
     # m3u builder.
     def build
@@ -11,9 +11,7 @@ module Murlsh
       else
         result = "# #{feed_url}\r\n\r\n"
         urls.each do |mu|
-          Murlsh::Plugin.hooks('url_display_pre') do |p|
-            p.run mu, req, config
-          end
+          Plugin.hooks('url_display_pre') { |p| p.run mu, req, config }
 
           result << "#{mu.url}\r\n"
           @updated = @updated ? [@updated, mu.time].max : mu.time

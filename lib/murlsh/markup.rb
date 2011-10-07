@@ -128,7 +128,7 @@ module Murlsh
     # * :max_size - images larger than this will not be converted to data uris
     def img_convert_data_uri(options)
       if options[:data_uri_prefix]
-        Murlsh::failproof do
+        Murlsh.failproof do
           # try to prevent getting outside current working directory
           img_path = File.join(Dir.getwd, File.expand_path(
             File.join(options[:data_uri_prefix], options[:src]), '/'))
@@ -137,7 +137,7 @@ module Murlsh
           unless size == 0 or 
             (options[:max_size] and size > options[:max_size])
             options[:src] = Magick::ImageList.new(img_path).extend(
-              Murlsh::ImageList).data_uri
+              ImageList).data_uri
 
             options.delete :data_uri_prefix
             options.delete :max_size

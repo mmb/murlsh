@@ -37,7 +37,7 @@ module Murlsh
 
     def ask
       if !defined?(@ask) or @ask.to_s != url
-        @ask = URI(url).extend(Murlsh::UriAsk)
+        @ask = URI(url).extend(UriAsk)
       end
       @ask
     end

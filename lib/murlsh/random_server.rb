@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   # Redirect to a random url from the database.
@@ -9,10 +7,10 @@ module Murlsh
     #
     # Redirect to root url if no urls match.
     def get(req)
-      all_results = Murlsh::UrlResultSet.new(req['q'], 1, 1)
+      all_results = UrlResultSet.new(req['q'], 1, 1)
 
       url = if all_results.total_entries > 0
-        Murlsh::UrlResultSet.new(req['q'],
+        UrlResultSet.new(req['q'],
           rand(all_results.total_entries) + 1, 1).results[0].url
       else
         config.fetch('root_url')

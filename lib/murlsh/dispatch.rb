@@ -3,8 +3,6 @@ require 'uri'
 require 'active_record'
 require 'rack'
 
-require 'murlsh'
-
 module Murlsh
 
   # Dispatch requests.
@@ -14,14 +12,14 @@ module Murlsh
     def initialize(config)
       @config = config
 
-      atom_server = Murlsh::AtomServer.new(config)
-      json_server = Murlsh::JsonServer.new(config)
-      m3u_server = Murlsh::M3uServer.new(config)
-      podcast_server = Murlsh::PodcastServer.new(config)
-      pop_server = Murlsh::PopServer.new(config)
-      random_server = Murlsh::RandomServer.new(config)
-      rss_server = Murlsh::RssServer.new(config)
-      url_server = Murlsh::UrlServer.new(config)
+      atom_server = AtomServer.new(config)
+      json_server = JsonServer.new(config)
+      m3u_server = M3uServer.new(config)
+      podcast_server = PodcastServer.new(config)
+      pop_server = PopServer.new(config)
+      random_server = RandomServer.new(config)
+      rss_server = RssServer.new(config)
+      url_server = UrlServer.new(config)
 
       root_path = URI(config.fetch('root_url')).path
 

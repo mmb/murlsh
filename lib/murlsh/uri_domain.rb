@@ -1,7 +1,5 @@
 require 'public_suffix_service'
 
-require 'murlsh'
-
 # URI mixin that adds method to get domain.
 module Murlsh
 
@@ -10,7 +8,7 @@ module Murlsh
     # Return the domain.
     def domain
       if host
-        Murlsh::failproof do
+        Murlsh.failproof do
           parsed = PublicSuffixService.parse(host.downcase)
           "#{parsed.sld}.#{parsed.tld}"
         end

@@ -13,9 +13,9 @@ module Murlsh
         config.fetch('num_posts_page', 25)
 
       content_type = 'text/html; charset=utf-8'
-      result_set = Murlsh::UrlResultSet.new(req['q'], page, per_page)
+      result_set = UrlResultSet.new(req['q'], page, per_page)
 
-      body = Murlsh::UrlBody.new(config, req, result_set, content_type)
+      body = UrlBody.new(config, req, result_set, content_type)
 
       resp = build_response
       resp.write(body.build)
@@ -27,7 +27,7 @@ module Murlsh
     # Respond to a POST request. Add the new url and return json.
     def post(req)
       if user = auth_from_req(req)
-        mu = Murlsh::Url.new do |u|
+        mu = Url.new do |u|
           u.url = req['url']
           u.email = user[:email]
           u.name = user[:name]
@@ -54,9 +54,9 @@ module Murlsh
         begin
           # validate before add_pre plugins have run and also after (in save!)
           raise ActiveRecord::RecordInvalid.new(mu)  unless mu.valid?
-          Murlsh::Plugin.hooks('add_pre') { |p| p.run mu, config }
+          Plugin.hooks('add_pre') { |p| p.run mu, config }
           mu.save!
-          Murlsh::Plugin.hooks('add_post') { |p| p.run mu, config }
+          Plugin.hooks('add_post') { |p| p.run mu, config }
           response_body, response_code = [mu], 200
         rescue ActiveRecord::RecordInvalid => error
           response_body = {
@@ -79,7 +79,7 @@ module Murlsh
 
       url_id = req.path[%r{/url/(\d+)$}, 1]
       begin
-        url = Murlsh::Url.find(url_id)
+        url = Url.find(url_id)
         if user = auth_from_req(req)
           if url[:email] == user[:email] or url[:name] == user[:name]
             url.destroy
@@ -98,7 +98,7 @@ module Murlsh
     def auth_from_req(req)
       secret = req['auth']
  
-      secret.to_s.empty? ? nil : Murlsh::Auth.new(
+      secret.to_s.empty? ? nil : Auth.new(
         config.fetch('auth_file')).auth(secret)
     end
 

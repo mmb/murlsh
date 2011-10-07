@@ -1,3 +1,5 @@
+require 'uri'
+
 module Murlsh
 
   module_function

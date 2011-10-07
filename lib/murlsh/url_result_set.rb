@@ -1,5 +1,3 @@
-require 'murlsh'
-
 module Murlsh
 
   class UrlResultSet
@@ -10,7 +8,7 @@ module Murlsh
     end
 
     def search_conditions
-      @search_conditions ||= Murlsh::SearchConditions.new(query).conditions
+      @search_conditions ||= SearchConditions.new(query).conditions
     end
 
     def conditions
@@ -32,7 +30,7 @@ module Murlsh
     end
 
     def total_entries
-      @total_entries ||= Murlsh::Url.count(:conditions => conditions)
+      @total_entries ||= Url.count(:conditions => conditions)
     end
 
     def total_pages
@@ -42,7 +40,7 @@ module Murlsh
     def offset; @offset ||= (page - 1) * per_page; end
 
     def results
-      Murlsh::Url.all(:conditions => conditions, :order => order,
+      Url.all(:conditions => conditions, :order => order,
         :limit => per_page, :offset => offset)
     end
 

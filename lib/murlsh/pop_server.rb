@@ -37,10 +37,10 @@ module Murlsh
     def process_mail(mail)
       parsed_mail = parse_mail(mail)
 
-      if user = Murlsh::Auth.new(config.fetch('auth_file')).by_email(
+      if user = Auth.new(config.fetch('auth_file')).by_email(
         parsed_mail[:from])
         parsed_mail[:uris].each do |uri|
-          mu = Murlsh::Url.new do |u|
+          mu = Url.new do |u|
             u.url = uri
             u.email = user[:email]
             u.name = user[:name]
@@ -49,9 +49,9 @@ module Murlsh
 
           # validate before add_pre plugins have run and also after (in save!)
           raise ActiveRecord::RecordInvalid.new(mu)  unless mu.valid?
-          Murlsh::Plugin.hooks('add_pre') { |p| p.run mu, config }
+          Plugin.hooks('add_pre') { |p| p.run mu, config }
           mu.save!
-          Murlsh::Plugin.hooks('add_post') { |p| p.run mu, config }
+          Plugin.hooks('add_post') { |p| p.run mu, config }
         end
       end
       parsed_mail

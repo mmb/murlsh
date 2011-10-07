@@ -8,9 +8,9 @@ module Murlsh
       page = 1
       per_page = config.fetch('num_posts_feed', 25)
 
-      result_set = Murlsh::UrlResultSet.new(req['q'], page, per_page)
+      result_set = UrlResultSet.new(req['q'], page, per_page)
 
-      body = Murlsh::JsonBody.new(config, req, result_set)
+      body = JsonBody.new(config, req, result_set)
 
       build_response body, 200, 'Content-Type' => 'application/json'
     end
