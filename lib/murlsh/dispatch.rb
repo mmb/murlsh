@@ -12,14 +12,14 @@ module Murlsh
     def initialize(config)
       @config = config
 
-      atom_server = AtomServer.new(config)
-      json_server = JsonServer.new(config)
-      m3u_server = M3uServer.new(config)
-      podcast_server = PodcastServer.new(config)
-      pop_server = PopServer.new(config)
-      random_server = RandomServer.new(config)
-      rss_server = RssServer.new(config)
-      url_server = UrlServer.new(config)
+      atom_server = Server::AtomServer.new(config)
+      json_server = Server::JsonServer.new(config)
+      m3u_server = Server::M3uServer.new(config)
+      podcast_server = Server::PodcastServer.new(config)
+      pop_server = Server::PopServer.new(config)
+      random_server = Server::RandomServer.new(config)
+      rss_server = Server::RssServer.new(config)
+      url_server = Server::UrlServer.new(config)
 
       root_path = URI(config.fetch('root_url')).path
 

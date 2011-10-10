@@ -1,21 +1,10 @@
-require 'rack'
+require 'murlsh/server/base_server'
 
-module Murlsh
-
-  # Superclass for servers.
-  class Server
-
-    def initialize(config); @config = config; end
-
-    def build_response(*args, &block)
-      if block_given?
-        ::Rack::Response.new *args, &block
-      else
-        ::Rack::Response.new *args
-      end
-    end
-
-    attr_reader :config
-  end
-
-end
+require 'murlsh/server/atom_server'
+require 'murlsh/server/json_server'
+require 'murlsh/server/m3u_server'
+require 'murlsh/server/podcast_server'
+require 'murlsh/server/pop_server'
+require 'murlsh/server/random_server'
+require 'murlsh/server/rss_server'
+require 'murlsh/server/url_server'
