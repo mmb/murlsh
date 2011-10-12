@@ -17,7 +17,7 @@ module Murlsh
         content_type = 'text/html; charset=utf-8'
         result_set = UrlResultSet.new(req['q'], page, per_page)
 
-        body = UrlBody.new(config, req, result_set, content_type)
+        body = Body::UrlBody.new(config, req, result_set, content_type)
 
         resp = build_response
         resp.write(body.build)

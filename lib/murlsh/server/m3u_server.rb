@@ -22,7 +22,7 @@ module Murlsh
           :content_type => AudioContentTypes)
 
         feed_url = URI.join(config.fetch('root_url'), 'm3u.m3u')
-        body = M3uBody.new(config, req, feed_url, result_set.results)
+        body = Body::M3uBody.new(config, req, feed_url, result_set.results)
 
         resp = build_response(body, 200, 'Content-Type' => 'audio/x-mpegurl')
         if u = body.updated

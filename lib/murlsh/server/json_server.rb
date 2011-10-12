@@ -12,7 +12,7 @@ module Murlsh
 
         result_set = UrlResultSet.new(req['q'], page, per_page)
 
-        body = JsonBody.new(config, req, result_set)
+        body = Body::JsonBody.new(config, req, result_set)
 
         build_response body, 200, 'Content-Type' => 'application/json'
       end

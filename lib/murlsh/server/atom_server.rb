@@ -15,7 +15,7 @@ module Murlsh
         result_set = UrlResultSet.new(req['q'], page, per_page)
 
         feed_url = URI.join(config.fetch('root_url'), config.fetch('feed_file'))
-        body = AtomBody.new(config, req, feed_url, result_set.results)
+        body = Body::AtomBody.new(config, req, feed_url, result_set.results)
 
         resp = build_response(body, 200,
           'Content-Type' => 'application/atom+xml')
