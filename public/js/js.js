@@ -16,7 +16,7 @@ var Murlsh = function ($, navigator, window, twtter) {
             vimeo :
                 /^http:\/\/(?:www\.)?vimeo\.com\/(\d+)$/i,
             youtube :
-                /^http:\/\/(?:(?:www|uk)\.)?youtube\.com\/watch\?v=([\w\-]+)(?:&|$)/i
+                /^https?:\/\/(?:(?:www|uk)\.)?youtube\.com\/watch\?v=([\w\-]+)(?:&|$)/i
         },
         vimeoEmbedCount = 0,
         // SHA1 and MD5 sums
