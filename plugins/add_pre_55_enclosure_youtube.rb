@@ -6,7 +6,7 @@ module Murlsh
     @hook = 'add_pre'
 
     YoutubeRe =
-      %r{^http://(?:(?:www|uk)\.)?youtube\.com/watch\?v=([\w\-]+)(?:&|$)}i
+      %r{^https?://(?:(?:www|uk)\.)?youtube\.com/watch\?v=([\w\-]+)(?:&|$)}i
 
     def self.run(url, config)
       if match = YoutubeRe.match(url.url)
