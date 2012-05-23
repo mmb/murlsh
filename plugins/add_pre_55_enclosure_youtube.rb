@@ -13,7 +13,7 @@ module Murlsh
         url.enclosures.build(
           :title => url.title,
           :content_type => 'application/x-shockwave-flash',
-          :enclosure_url => "http://www.youtube.com/v/#{match[1]}.swf")
+          :enclosure_url => "http://www.youtube.com/v/#{match[1]}")
       end
     end
 
