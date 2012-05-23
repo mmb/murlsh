@@ -1,4 +1,4 @@
-require 'public_suffix_service'
+require 'public_suffix'
 
 # URI mixin that adds method to get domain.
 module Murlsh
