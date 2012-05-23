@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
     nokogiri
     plumnailer
     postrank-uri
-    public_suffix_service
+    public_suffix
     push-notify
     rack
     rack-cache
